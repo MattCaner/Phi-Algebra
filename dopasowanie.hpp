@@ -1,10 +1,18 @@
 #pragma once
 #include"util.hpp"
 
+/*
+    Usage:
+    Create PhiExpression with one of constructors or with explicit converter.
+    You can add, subtract, multiply and divide PhiExpressions with normal operators.
+    You can write PhiExpression with ostream or implement your own printing function.
+
+*/
+
 class PhiExpression{
 public:
     //constructors:
-    PhiExpression(int A = 0, int B = 0, int C = 0, int D = 0, double phi = M_PHI):  //default and non default constructor, initialises all values in fields.
+    PhiExpression(int A = 0, int B = 0, int C = 0, int D = 0, double phi = M_PHI):  //default constructor initialises all values in fields.
         A_(A), B_(B), C_(C), D_(D), phi_(phi){ }
     PhiExpression(double x, int precision, double phi = M_PHI);     //creates a phi expression that is closer to x than [precision]
     //basic utility functions:
@@ -34,7 +42,7 @@ private:
     int B_;
     int C_;
     int D_;
-    //generally those are constants:
+    //generally those are constants that should not be modified:
     double phi_;        //value of phi
     const int hardLimit = 10000;    //hard limit of iterations in adjustment algorithm.
     //private methods:
