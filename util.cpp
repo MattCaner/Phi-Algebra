@@ -8,33 +8,29 @@ int MinIndex(double tab[], int size){
     return midex;
 }
 
-bool Jump(double target, int* P, int* R,double phi_){
-    #ifdef LOUD
-    std::cout << *P << " " << *R << std::endl;
-    #endif //LOUD
-    double diff[5];
-    diff[0] = abs(target-(*P+*R*phi_));
-    diff[1] = abs(target-(*P+1+*R*phi_));
-    diff[2] = abs(target-(*P-1+*R*phi_));
-    diff[3] = abs(target-(*P+(*R+1)*phi_));
-    diff[4] = abs(target-(*P+(*R-1)*phi_));
+int GCD4(int a, int b, int c, int d){
+    int tmp = GDC2(a,b);
+    tmp = GDC2(tmp,c);
+    tmp = GDC2(tmp,d);
+    return tmp;     //can be also return GDC(GDC(GDC(a,b),c),d)
+}
+/**
 
-    switch(MinIndex(diff,5)){
-        case 0:
-            return 0;
-        break;
-        case 1:
-            *P += 1;
-        break;
-        case 2:
-            *P -= 1;
-        break;
-        case 3:
-            *R += 1;
-        break;
-        case 4:
-            *R -= 1;
-        break;
+int GDC2(int a, int b)
+{ 
+    if (a == 0) return b; 
+    if (b == 0) return a; 
+    if (a == b) return a; 
+
+    if (a > b) return GDC2(a-b, b); 
+    else return GDC2(a, b-a); 
+} */
+
+int GDC2(int u, int v) {
+    while ( v != 0) {
+        int r = u % v;
+        u = v;
+        v = r;
     }
-    return 1;
+    return u;
 }
